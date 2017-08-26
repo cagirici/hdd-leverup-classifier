@@ -83,21 +83,21 @@ def draw_line(event,x,y,flags,param):
 			last=img.copy()
 			counter = 0
 
-	elif event == cv2.EVENT_MOUSEMOVE:
-		if counter == 1 :
-			img=last.copy()
-			if mode == True:
-				cv2.line(img,(ix,iy),(x,y),(0,0,255), 20)
-			else:
-				cv2.line(img,(ix,iy),(x,y),(255,0,0),20)
-			time.sleep(0.025)
-		elif counter == 2 :
-			img=last.copy()
-			if mode == True:
-				ix3=(ix+ix2)/2
-				iy3=(iy+iy2)/2
-				cv2.arrowedLine(img,(ix3,iy3),(x,y), (0,0,255),20)
-			time.sleep(0.025)						
+#	elif event == cv2.EVENT_MOUSEMOVE:
+#		if counter == 1 :
+#			img=last.copy()
+#			if mode == True:
+#				cv2.line(img,(ix,iy),(x,y),(0,0,255), 20)
+#			else:
+#				cv2.line(img,(ix,iy),(x,y),(255,0,0),20)
+#			time.sleep(0.025)
+#		elif counter == 2 :
+#			img=last.copy()
+#			if mode == True:
+#				ix3=(ix+ix2)/2
+#				iy3=(iy+iy2)/2
+#				cv2.arrowedLine(img,(ix3,iy3),(x,y), (0,0,255),20)
+#			time.sleep(0.025)						
 
 cv2.setMouseCallback('image',draw_line)
 
@@ -110,12 +110,12 @@ while(1):
 		print "mode change"
 	elif k == ord('s'):
 		try:
-			with open(os.path.join('regression','data.txt'), 'r') as outfile:
+			with open(os.path.join('regression', imgfilename + '-data.txt'), 'r') as outfile:
 				data = json.load(outfile)
 				datafile = datafile + data
 		except:
 			print "error"
-		with open(os.path.join('regression','data.txt'), 'w') as outfile:
+		with open(os.path.join('regression',imgfilename + '-data.txt'), 'w') as outfile:
 			json.dump(datafile, outfile)
 	elif k == 27:
 		break
